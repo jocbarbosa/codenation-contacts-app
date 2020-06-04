@@ -1,6 +1,23 @@
 import React from 'react';
 
 class Filters extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.defaultSort = props.onSort;
+	}
+
+	state = {
+		selectedItem: 'name'
+	};
+
+	handleOnSort = (event) => {
+		this.setState({
+			selectedItem: event.target.name,
+		});
+		this.defaultSort(event.target.name);
+	}
+
 	render() {
 		return (
 			<div className="container" data-testid='filters'>
@@ -13,23 +30,23 @@ class Filters extends React.Component {
 						</button>
 					</div>
 
-					<button className="filters__item is-selected">
+					<button name="name" onClick={this.handleOnSort} className="filters__item is-selected">
 						Nome <i className="fas fa-sort-down" />
 					</button>
 
-					<button className="filters__item">
+					<button name="country" onClick={this.handleOnSort} className="filters__item">
 						País <i className="fas fa-sort-down" />
 					</button>
 
-					<button className="filters__item">
+					<button name="company" onClick={this.handleOnSort} className="filters__item">
 						Empresa <i className="fas fa-sort-down" />
 					</button>
 
-					<button className="filters__item">
+					<button name="department" onClick={this.handleOnSort} className="filters__item">
 						Departamento <i className="fas fa-sort-down" />
 					</button>
 
-					<button className="filters__item">
+					<button name="admissionDate" onClick={this.handleOnSort} className="filters__item">
 						Data de admissão <i className="fas fa-sort-down" />
 					</button>
 				</section>
